@@ -8,7 +8,7 @@ Created on Wed Feb 13 08:58:59 2019
 
 import numpy as np
 import matplotlib.pyplot as plt
-import sklearn.decomposition.pca as skl
+from sklearn.decomposition import PCA
 
 X = np.load('data/trn_img.npy')
 Y = np.load('data/trn_lbl.npy')
@@ -25,26 +25,25 @@ w2 = []
 m1 = []
 TEST = []
 
+Zdist = np.zeros((10, len(Z)))
+
 for cpt_class in range(0, 10):
     w1.append(X[Y == cpt_class]) #créer le tableau X avec le bon nombre de cases
-    m1.append(np.mean(w1[cpt_class], axis=0))
-    
+    m1.append(np.mean(w1[cpt_class], axis=0)) # Création du tableau des barycentres des classes (les points sont des images)
     w2.append(Z[ZY == cpt_class]) #créer le tableau X avec le bon nombre de cases
        
 cpt = 0 
 saClasse = 0
-for point in Z:
-    distMin = abs((m1[0] - point))
-    saClasse = 0
-    i =1
-    while i < len(m1):
-        dist = abs(m1[i] - point)
-        if(dist < distMin):
-            distMin = dist
-            saClass = i
-        i = i+1
-        
-    TEST.append(saClasse == ZY[cpt])
-    cpt = cpt+1     
-    
-#skl.check_array(w)
+
+for i in range(0, 10) :
+    Zdist[i] = (abs((m1[i] - Z))**2).sum(axis=1)
+
+ZClasse = np.argmin(Zdist, axis=0)
+
+TEST.append(ZClasse == ZY)
+
+performance = (len(sum(TEST)) - sum(TEST).sum())/len(sum(TEST))
+print(performance*100)
+
+Xpca = PCA(n_components = 2)
+Xpca.fit(X)
