@@ -34,7 +34,7 @@ def calculSVMSvr(X, Y, Z, ZY) :
     print("Calcul SVM SVR")
     TEST = []
     TEST2 = []
-    svr = svm.SVC(kernel='linear', max_iter=2100)
+    svr = svm.SVC(kernel='linear', max_iter=2100, gamma='auto')
     svr.fit(X, Y)
     Zpredict = svr.predict(Z)
     Xpredict = svr.predict(X)
@@ -48,7 +48,7 @@ def calculSVMRbf(X, Y, Z, ZY) :
     print("Calcul SVM RBF")
     TEST = []
     TEST2 = []
-    svr = svm.SVC(max_iter=2100)
+    svr = svm.SVC(max_iter=2100, gamma='auto')
     svr.fit(X, Y)
     Zpredict = svr.predict(Z)
     Xpredict = svr.predict(X)
@@ -62,7 +62,7 @@ def calculSVMPoly(X, Y, Z, ZY) :
     print("Calcul SVM Poly")
     TEST = []
     TEST2 = []
-    svr = svm.SVC(kernel='poly', max_iter=2100)
+    svr = svm.SVC(kernel='poly', max_iter=2100, gamma='auto')
     svr.fit(X, Y)
     Zpredict = svr.predict(Z)
     Xpredict = svr.predict(X)
