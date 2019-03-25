@@ -6,6 +6,8 @@ Created on Tue Mar 12 18:48:41 2019
 """
 
 from sklearn import svm
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
 
 def calculPerformance(TEST, TEST2) :
     print("Performance Dev")
@@ -30,6 +32,18 @@ def calculSVMLin(X, Y, Z, ZY) :
     
     calculPerformance(TEST, TEST2)
     
+    print("Matrice de confusion de dev")
+    conf_matrix = confusion_matrix(ZY, Zpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
+    
+    print("Matrice de confusion de test")
+    conf_matrix = confusion_matrix(Y, Xpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
+    
 def calculSVMSvr(X, Y, Z, ZY) :
     print("Calcul SVM SVR")
     TEST = []
@@ -42,6 +56,18 @@ def calculSVMSvr(X, Y, Z, ZY) :
     TEST2.append(Xpredict == Y)
     
     calculPerformance(TEST, TEST2)
+    
+    print("Matrice de confusion de dev")
+    conf_matrix = confusion_matrix(ZY, Zpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
+    
+    print("Matrice de confusion de test")
+    conf_matrix = confusion_matrix(Y, Xpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
 
 
 def calculSVMRbf(X, Y, Z, ZY) :
@@ -56,6 +82,18 @@ def calculSVMRbf(X, Y, Z, ZY) :
     TEST2.append(Xpredict == Y)
     
     calculPerformance(TEST, TEST2)
+    
+    print("Matrice de confusion de dev")
+    conf_matrix = confusion_matrix(ZY, Zpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
+    
+    print("Matrice de confusion de test")
+    conf_matrix = confusion_matrix(Y, Xpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
 
 
 def calculSVMPoly(X, Y, Z, ZY) :
@@ -69,3 +107,15 @@ def calculSVMPoly(X, Y, Z, ZY) :
     TEST.append(Zpredict == ZY)
     TEST2.append(Xpredict == Y)
     calculPerformance(TEST, TEST2)
+    
+    print("Matrice de confusion de dev")
+    conf_matrix = confusion_matrix(ZY, Zpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
+    
+    print("Matrice de confusion de test")
+    conf_matrix = confusion_matrix(Y, Xpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()

@@ -7,6 +7,8 @@ Created on Mon Mar 18 14:34:54 2019
 
 from sklearn.neighbors import KNeighborsClassifier
 import SVM_fct as svm_fct
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
 
 
 def neighborsClass(X, Y, Z, ZY) :
@@ -26,4 +28,16 @@ def neighborsClass(X, Y, Z, ZY) :
     TEST2.append(Xpredict == Y)
     
     svm_fct.calculPerformance(TEST, TEST2)
+    
+    print("Matrice de confusion de dev")
+    conf_matrix = confusion_matrix(ZY, Zpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
+    
+    print("Matrice de confusion de test")
+    conf_matrix = confusion_matrix(Y, Xpredict)
+    plt.matshow(conf_matrix)
+    plt.colorbar()
+    plt.show()
     #print(" PROBA " + neigh.predict_proba(X))
