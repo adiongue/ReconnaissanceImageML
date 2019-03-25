@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 
 def calculPerformance(TEST, TEST2) :
     print("Performance Dev")
-    performance = (len(sum(TEST)) - sum(TEST).sum())/len(sum(TEST))
-    print(performance*100)
+    performance = (len(sum(TEST)) - sum(TEST).sum())/len(sum(TEST))  #Calcul de performance sum(TEST) permet de transformer les booléens en entier 1 et 0 (plus simple pour le calcul)
+    print(performance*100)                                           #Affichage en pourcentage
     
     print("Performance Train")
     performance = (len(sum(TEST2)) - sum(TEST2).sum())/len(sum(TEST2))
@@ -22,10 +22,10 @@ def calculSVMLin(X, Y, Z, ZY) :
     print("Calcul SVM Linear")
     TEST = []
     TEST2 = []
-    
-    lin = svm.LinearSVC(max_iter=2100)
-    lin.fit(X, Y)
-    Zpredict = lin.predict(Z)
+                                            #Initialisation de l'algorithme SVM Linear avec les paramètres de bases
+    lin = svm.LinearSVC(max_iter=2100)      #On donne une itération max pour éviter que l'algo prenne trop de temps à s'exécuter.
+    lin.fit(X, Y)                           #Utilisation de l'algorithme avec Y pour l'entrainement
+    Zpredict = lin.predict(Z)               #Utilisation des éléments calculé par la SVM pour prédire notre nouvel Y
     Xpredict = lin.predict(X)
     TEST.append(Zpredict == ZY)
     TEST2.append(Xpredict == Y)
@@ -33,9 +33,9 @@ def calculSVMLin(X, Y, Z, ZY) :
     calculPerformance(TEST, TEST2)
     
     print("Matrice de confusion de dev")
-    conf_matrix = confusion_matrix(ZY, Zpredict)
-    plt.matshow(conf_matrix)
-    plt.colorbar()
+    conf_matrix = confusion_matrix(ZY, Zpredict)    #Calcul de la matrice de confusion
+    plt.matshow(conf_matrix)    #Affichage de la matrice de confusion
+    plt.colorbar()              #Affichage de la barre à droite pour l'échelle de couleur
     plt.show()
     
     print("Matrice de confusion de test")

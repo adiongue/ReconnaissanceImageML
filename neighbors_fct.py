@@ -11,7 +11,7 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
 
-def neighborsClass(X, Y, Z, ZY) :
+def neighborsClass(X, Y, Z, ZY) :       #Même méthodologie que pour la SVM phase init, predict, et calcul performance et matrice de confusion
     print("---------- Calcul nearest neighbors ball tree")
     
     TEST = []

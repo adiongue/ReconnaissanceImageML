@@ -18,7 +18,7 @@ def calculBarycentre(X, Y, Z, ZY) :
     w1 = []
     w2 = []
     m1 = []
-    TEST = []
+    TEST = []       #Passage par une liste pour faciliter l'ajout d'éléments à la fin 
     
     Zdist = np.zeros((10, len(Z)))
     
@@ -38,10 +38,10 @@ def calculBarycentre(X, Y, Z, ZY) :
     print("conf matrix = ")
     print(conf_matrix)
     
-    TEST.append(ZClasse == ZY)
+    TEST.append(ZClasse == ZY)      #Ajout simplifié
     
-    performance = (len(sum(TEST)) - sum(TEST).sum())/len(sum(TEST))
-    print(performance*100)    
+    performance = (len(sum(TEST)) - sum(TEST).sum())/len(sum(TEST))     #Calcul de performance sum(TEST) permet de transformer les booléens en entier 1 et 0 (plus simple pour le calcul)
+    print(performance*100)                                              #Affichage en pourcentage
 
 X = np.load('data/trn_img.npy')
 Y = np.load('data/trn_lbl.npy')
